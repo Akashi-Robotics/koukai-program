@@ -1,0 +1,24 @@
+#include "mbed.h"
+#include "motor.hpp"
+#include "ps3input.hpp"
+
+PS3Input ps3(PA_0,PA_1);
+Motor motor(PC_7,PA_7);
+DigitalOut led(PA_15); 
+float Y = 0.0;
+
+int main()
+{
+    while (true) {
+        if(ps3.IsPressed(Button::??)){              //上ボタンを押されたとき
+            motor = 0.2;
+        }
+        else if(ps3.IsPressed(Button::??)){         //下ボタンを押されたとき
+            motor = -0.2;
+        }
+        Y = 0.3 * ps3.GetValue(???????????)/64;     //Lスティックの上下方向の大きさに合わせて、モーターが動く
+        motor = Y;
+        wait(0.1);
+    }
+}
+

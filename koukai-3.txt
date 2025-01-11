@@ -1,0 +1,21 @@
+#include "mbed.h"
+#include "robomaster_can.hpp"
+
+int main()
+{
+	uint8_t id1 = 0;
+	robomaster::Robomaster_Array array(PB_8, PB_9, 1000000); // RD, TD, Bitrate
+	robomaster::Robomaster_ESC ESC1(id1);					 // id 0~7
+	
+	array.add_ESC(&ESC1);
+	
+	while (1)
+	{
+		int16_t current = 1000;         
+		ESC1.set_current(????);         //motorに送る電流をcurrentに設定
+		printf("Current: %d\n", ESC1.get_current());
+		??????????;                   //motorに電流の大きさを送信
+		wait(0.1);
+	}
+}
+

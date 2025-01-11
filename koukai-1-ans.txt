@@ -1,0 +1,13 @@
+#include "mbed.h"
+
+DigitalOut Led(PA_15);
+
+int main()
+{
+    Led = 0;    //LED off
+    wait(2);
+    Led = 1;    //LED on
+    wait(2);
+    Led = 0;    //LED off
+}
+

@@ -1,0 +1,14 @@
+#include "mbed.h"
+#include "motor.hpp"
+
+Motor motor(????,????);
+
+int main()
+{
+    motor = ?;      //motor off
+    wait(2);
+    motor = ???;    //motorを0.2の速さで動かす
+    wait(3);
+    motor = ?;      //motor off
+}
+
