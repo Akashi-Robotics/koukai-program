@@ -1,0 +1,64 @@
+#include "mbed.h"
+#include "motor.hpp"
+#include "ps3input.hpp"
+
+PS3Input ps3(PA_0,PA_1);
+Motor motor1(PC_7,PA_7);
+Motor motor2(PB_0,PC_9);
+Motor motor3(PA_11,PB_2);
+Motor motor4(PA_10,PB_10);
+
+___________________________________________________________________________________________________
+//ボタン操作
+int main()
+{
+    double X,Y;
+    while (true) {
+        if(ps3.IsPressed(Button::??)){          //上ボタン
+            motor1 = -0.2;
+            motor2 = -0.2;
+            motor3 = 0.2;
+            motor4 = 0.2;
+        }else if(ps3.IsPressed(Button::???)){  //下ボタン
+            motor1 = 0.2;
+            motor2 = 0.2;
+            motor3 = -0.2;
+            motor4 = -0.2;
+        }else if(ps3.IsPressed(Button::???)){   //右ボタン
+            motor1 = 0.2;
+            motor2 = -0.2;
+            motor3 = -0.2;
+            motor4 = 0.2;
+        }else if(ps3.IsPressed(Button::???)){   //左ボタン
+            motor1 = -0.2;
+            motor2 = 0.2;
+            motor3 = 0.2;
+            motor4 = -0.2;
+        }else{
+            motor1 = 0;
+            motor2 = 0;
+            motor3 = 0;
+            motor4 = 0;
+        }
+
+    }
+}
+___________________________________________________________________________________________________
+
+___________________________________________________________________________________________________
+//スティック操作
+int main()
+{
+    double X,Y;
+    while (true) {
+        Y = 0.3 * ps3.GetValue(Stick::???)/??;     //Lスティックの上下方向の大きさに合わせて、モーターが動く
+        X = 0.3 * ps3.GetValue(Stick::???)/??;
+
+        motor1 = -Y+X;
+        motor2 = Y+X;
+        motor3 = -Y-X;
+        motor4 = Y-X;
+
+    }
+} 
+___________________________________________________________________________________________________
